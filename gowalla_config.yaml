@@ -1,0 +1,65 @@
+dataset:
+  edges_path: data/raw/gowalla/loc-gowalla_edges.txt
+  checkins_path: data/raw/gowalla/loc-gowalla_totalCheckins.txt
+  processed_dir: data/processed/gowalla
+
+  min_user_checkins: 20
+  test_pairs: 200        # 100 positive + 100 negative (LLM direct)
+  train_pairs: 2000      # 1000 positive + 1000 negative (LLM direct)
+  ml_test_pairs: 1000    # 500 positive + 500 negative (ML only)
+  ml_train_pairs: 20000  # 10000 positive + 10000 negative (ML only)
+  max_history_in_prompt: 15
+
+models:
+  - gpt-4o-mini
+  - gpt-4o
+  - gpt-4.1
+  - gpt-5-mini
+  - gpt-5-nano
+
+granularity_levels:
+  - G0  # No context
+  - G1  # Region-level
+  - G2  # Check-in statistics + location overlap
+  - G3  # Recent trajectory (coordinates)
+  - G4  # Full spatiotemporal with co-occurrence
+
+llm:
+  temperature: 0.0
+  max_tokens: 64
+  request_timeout: 60
+  max_retries: 5
+  retry_base_delay: 60.0
+  cache_dir: results/gowalla_cache
+
+results_dir: results/gowalla
+figures_dir: figures/gowalla
+
+enrichment:
+  overture_release: "2026-02-18.0"
+  match_radius_m: 50
+  min_known_ratio: 0.80
+  categories_path: data/processed/gowalla/overture_categories.json
+  overture_parquet: data/raw/gowalla/overture_us_places.parquet
+  filtered_dir: data/processed/gowalla/enriched
+  embeddings_dir: data/processed/gowalla/enriched_embeddings_v2
+  results_dir: results/gowalla_enriched
+  cache_dir: results/gowalla_enriched_cache
+  hard_neg_dir: data/processed/gowalla/enriched_hard_neg
+  hard_neg_results_dir: results/gowalla_enriched/hard_neg
+  fewshot_results_dir: results/gowalla_enriched/fewshot
+  fewshot_n_examples: 2
+  finetune_results_dir: results/gowalla_enriched/finetune
+  finetune_models:
+    - gpt-4o-mini
+    - gpt-4.1-mini
+  finetune_n_train: 200
+  llama_results_dir: results/gowalla_enriched/llama
+
+nextloc:
+  n_candidates: 20
+  n_train_users: 1000
+  n_test_users: 200
+  data_dir: data/processed/gowalla/nextloc
+  results_dir: results/gowalla_nextloc
+  llama_results_dir: results/gowalla_nextloc/llama

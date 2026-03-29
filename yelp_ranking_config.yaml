@@ -1,0 +1,34 @@
+dataset:
+  business_path: data/raw/yelp/yelp_academic_dataset_business.json
+  review_path: data/raw/yelp/yelp_academic_dataset_review.json
+  processed_dir: data/processed/yelp_ranking
+
+  min_user_reviews: 20
+  test_sample_size: 100
+  num_negative_candidates: 19  # +1 ground truth = 20 total
+  max_history_in_prompt: 15
+
+models:
+  - gpt-4o-mini
+  - gpt-4o
+  - gpt-4.1
+  - gpt-5-mini
+  - gpt-5-nano
+
+granularity_levels:
+  - G0  # Zero-shot: candidate list only
+  - G1  # City-level
+  - G2  # Category profile
+  - G3  # Recent trajectory (semantic + ratings)
+  - G4  # Full spatiotemporal
+
+llm:
+  temperature: 0.0
+  max_tokens: 64
+  request_timeout: 60
+  max_retries: 5
+  retry_base_delay: 60.0
+  cache_dir: results/yelp_ranking_cache
+
+results_dir: results/yelp_ranking
+figures_dir: figures/yelp_ranking

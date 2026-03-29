@@ -1,0 +1,41 @@
+# Data (users download themselves)
+data/
+
+# Results and caches
+results/
+
+# Paper source
+paper/
+
+# Reference material
+MOP/
+
+# Generated figures
+figures/
+
+# Internal notebooks
+notebooks/
+
+# HPC-specific docs
+docs/
+
+# Stale top-level configs from early development
+config.yaml
+main.tex
+
+# Environment
+.env
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo

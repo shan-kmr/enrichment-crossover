@@ -1,0 +1,39 @@
+dataset:
+  raw_dir: data/raw/nyc_taxi
+  processed_dir: data/processed/nyc_taxi
+  zones_dir: data/raw/nyc_taxi/zones
+  zone_lookup: data/raw/nyc_taxi/zones/taxi_zone_lookup.csv
+
+  train_months: ["2024-01", "2024-02", "2024-03", "2024-04", "2024-05",
+                  "2024-06", "2024-07", "2024-08", "2024-09"]
+  test_months: ["2024-10", "2024-11", "2024-12"]
+
+  min_duration_min: 1
+  max_duration_min: 120
+  excluded_zones: [264, 265]
+
+granularity_levels:
+  - G0
+  - G1
+  - G2
+  - G3
+  - G4
+
+enrichment:
+  overture_parquet: data/raw/gowalla/overture_us_places.parquet
+  zone_categories_path: data/processed/nyc_taxi/zone_categories.json
+  match_radius_m: 1000
+
+ranking:
+  n_candidates: 20
+  n_train_origins: 1000
+  n_test_origins: 200
+  neg_strategy: same_borough
+
+duration:
+  n_train_samples: 50000   # for ML (LightGBM/MLP)
+  n_test_samples: 1000
+  llama_train_samples: 20000   # for Llama FT (match Gowalla 20K)
+  llama_test_samples: 200
+
+results_dir: results/nyc_taxi

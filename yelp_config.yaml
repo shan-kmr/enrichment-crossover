@@ -1,0 +1,34 @@
+dataset:
+  business_path: data/raw/yelp/yelp_academic_dataset_business.json
+  review_path: data/raw/yelp/yelp_academic_dataset_review.json
+  processed_dir: data/processed/yelp
+
+  min_user_reviews: 20     # only users with enough history
+  test_reviews_per_user: 5 # hold out last N reviews per user as test
+  test_sample_size: 100     # total test cases to evaluate
+  max_history_in_prompt: 20
+
+models:
+  - gpt-4o-mini
+  - gpt-4o
+  - gpt-4.1
+  - gpt-5-mini
+  - gpt-5-nano
+
+granularity_levels:
+  - G0  # Zero-shot: business info only, no user context
+  - G1  # City-level
+  - G2  # Category profile with avg ratings
+  - G3  # Recent visit trajectory (semantic)
+  - G4  # Full spatiotemporal
+
+llm:
+  temperature: 0.0
+  max_tokens: 64
+  request_timeout: 60
+  max_retries: 5
+  retry_base_delay: 60.0
+  cache_dir: results/yelp_cache
+
+results_dir: results/yelp
+figures_dir: figures/yelp
