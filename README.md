@@ -144,7 +144,6 @@ Each dataset has a YAML config controlling data paths, granularity levels, model
 ```bibtex
 @article{kumar2026enrichment,
   title={The Enrichment Crossover Effect: Context Granularity and Knowledge Enrichment in Geospatial Prediction},
-  author={Kumar, Shantanu and Antonopoulos, Timos},
   year={2026}
 }
 ```
