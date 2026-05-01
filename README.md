@@ -1,6 +1,6 @@
 # The Enrichment Crossover Effect
 
-Code for "The Enrichment Crossover Effect: Context Granularity and Knowledge Enrichment in Geospatial Prediction" by Shantanu Kumar and Timos Antonopoulos (Yale University).
+Code for "The Enrichment Crossover Effect: Context Granularity and Knowledge Enrichment in Geospatial Prediction".
 
 External knowledge enrichment (e.g., Overture Maps place categories) improves geospatial prediction at low behavioral context granularity but **hurts** at high granularity. This crossover is consistent across LightGBM, MLPs, zero-shot LLMs, and fine-tuned Llama 3.1 8B, on friendship prediction, next-location ranking, taxi trip tasks, and Yelp review prediction.
 
